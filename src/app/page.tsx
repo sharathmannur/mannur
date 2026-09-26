@@ -10,7 +10,7 @@ export default function Home() {
       <section 
         className="py-20 px-4 sm:px-6 lg:px-8 flex-grow flex items-center justify-center text-white relative overflow-hidden"
         style={{
-          backgroundImage: 'linear-gradient(rgba(139, 0, 0, 0.85), rgba(139, 0, 0, 0.85)), url("/hero-bg.png")',
+          backgroundImage: 'url("/hero-bg.png")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'

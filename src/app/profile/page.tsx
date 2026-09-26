@@ -66,8 +66,9 @@ export default function Profile() {
       await supabase.from('profiles').update({ avatar_url: data.publicUrl }).eq('id', profile.id)
       setProfile({ ...profile, avatar_url: data.publicUrl })
       
-    } catch (error) {
-      alert('Error uploading avatar!')
+    } catch (error: any) {
+      console.error(error)
+      alert('Error uploading avatar: ' + (error.message || 'Unknown error. Check console.'))
     } finally {
       setUploading(false)
     }

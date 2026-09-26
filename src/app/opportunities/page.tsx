@@ -37,7 +37,11 @@ export default function Opportunities() {
   const handleApply = async (oppId: string, url: string) => {
     if (!user) return alert("Please log in to apply.")
     await supabase.from('applications').insert({ user_id: user.id, opportunity_id: oppId, status: 'Applied' })
-    window.open(url, '_blank')
+    if (url) {
+      window.open(url, '_blank')
+    } else {
+      alert("Success! Your application has been submitted (Demo Mode).")
+    }
   }
 
   if (loading) return <div className="p-12 text-center text-slate-500">Loading opportunities...</div>

@@ -7,13 +7,20 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="bg-[#8b0000] py-20 px-4 sm:px-6 lg:px-8 flex-grow flex items-center justify-center text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
+      <section 
+        className="py-20 px-4 sm:px-6 lg:px-8 flex-grow flex items-center justify-center text-white relative overflow-hidden"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(139, 0, 0, 0.85), rgba(139, 0, 0, 0.85)), url("/hero-bg.png")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="mb-8 flex justify-center">
-            <Image src="/niat-logo.jpg" alt="NIAT Logo" width={180} height={80} className="rounded-lg shadow-lg" />
+            <Image src="/niat-logo.jpg" alt="NIAT Logo" width={180} height={80} className="rounded-lg shadow-xl border-2 border-white/10" />
           </div>
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 text-white drop-shadow-md">
             NxtWave of Innovation in<br/><span className="text-red-200">Advanced Technologies</span>
           </h1>
           <p className="text-xl text-red-100 mb-10 max-w-2xl mx-auto font-light">

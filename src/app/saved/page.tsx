@@ -8,12 +8,14 @@ import { format } from 'date-fns'
 export default function Saved() {
   const [saved, setSaved] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
+  const [user, setUser] = useState<any>(null)
   const supabase = createClient()
 
   useEffect(() => {
     async function fetchSaved() {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) return
+      setUser(user)
 
       const { data } = await supabase
         .from('saved_opportunities')
@@ -59,7 +61,14 @@ export default function Saved() {
                     <Button variant="outline" className="w-full text-red-600 hover:text-red-700 hover:bg-red-50 border-red-200" onClick={() => handleUnsave(item.id)}>
                       Remove
                     </Button>
-                    <Button className="w-full bg-[#8b0000] hover:bg-[#700000] text-white" onClick={() => window.open(opp.application_url, '_blank')}>
+                    <Button className="w-full bg-[#8b0000] hover:bg-[#700000] text-white" onClick={async () => {
+                      await supabase.from('applications').insert({ user_id: user?.id, opportunity_id: item.opportunity_id, status: 'Applied' })
+                      if (opp.application_url) {
+                        window.open(opp.application_url, '_blank')
+                      } else {
+                        alert("Success! Your application has been submitted (Demo Mode).")
+                      }
+                    }}>
                       Apply
                     </Button>
                   </div>
